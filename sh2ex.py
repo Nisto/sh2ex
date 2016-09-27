@@ -224,7 +224,7 @@ def main(argc=len(sys.argv), argv=sys.argv):
 
                 print("Extracted: %s" % sub_path)
 
-    input("All done.")
+        input("All done.")
 
     return 0
 
