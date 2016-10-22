@@ -2,10 +2,13 @@
 Extracts internal filesystem of Silent Hill 2
 
 ### Prerequisites
-Python 3.x
+* Python 3.x
 
 ### Usage
-If you have installed Python with associations, you should be able to simply drag an ISO onto the script file to get started. Otherwise, on command-line, simply pass the path to your ISO file as the first argument.
+* Via drag-and-drop (&#42;): drop a disk image onto the .py file
+* Via commandline: supply the path to a disk image as the first argument
+
+**&#42;** Drag-and-drop must be supported by your environment, and Python must be set to handle .py files.
 
 ### Currently supported versions:
 * SLPM-65051 (v1.50)
@@ -14,3 +17,5 @@ If you have installed Python with associations, you should be able to simply dra
 * SLUS-20228 (v1.20)
 * SLUS-20228GH - Greatest Hits (v2.01)
 * SLES-50382 - Special Edition / The Collection (v1.10)
+
+*SLPM-65098* might be unintentionally supported as well (i.e. not tested since I don't have it), as the executable name and even disc mastering code on *SLPM-65631* matches with it. If you have tested that exact release, please report the results.
