@@ -275,6 +275,8 @@ exe_meta = [
         "toc_count"      : 3443
     },
 
+    # SLPM-65098 - Saigo no Uta (v1.50)
+    # +
     # SLPM-65631 - Saigo no Uta - Konami Dendou Selection (v1.50)
     # Executable timestamp: 2002-02-26 06:11:56 GMT+0900
     {
@@ -284,6 +286,17 @@ exe_meta = [
         "imagebase"      : 0x100000,
         "toc_offset"     : 0x2CCB80,
         "toc_count"      : 3894
+    },
+
+    # SLPM-61009 - Trial Version (v1.20)
+    # Executable timestamp: 2001-08-11 11:18:02 GMT+0900
+    {
+        "path"           : "SLPM_610.09",
+        "crc"            : 0x37E6204D,
+        "elf_header_size": 0x700,
+        "imagebase"      : 0x100000,
+        "toc_offset"     : 0x2B3180,
+        "toc_count"      : 3441
     },
 
     # SLPM-12345 - E3 Demo (v0.30)
@@ -328,6 +341,17 @@ exe_meta = [
         "imagebase"      : 0x100000,
         "toc_offset"     : 0x2BD400,
         "toc_count"      : 3724
+    },
+
+    # SLES-51156 - Director's Cut (v1.02)
+    # Executable timestamp: 2002-11-07 10:15:08 GMT+0900
+    {
+        "path"           : "SLES_511.56",
+        "crc"            : 0xE6CFE16F,
+        "elf_header_size": 0x800,
+        "imagebase"      : 0x100000,
+        "toc_offset"     : 0x2CD980,
+        "toc_count"      : 3894
     }
 ]
 
