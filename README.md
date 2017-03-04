@@ -1,5 +1,5 @@
 # sh2ex
-Extracts internal filesystem of Silent Hill 2
+Extracts internal filesystem and sound data of Silent Hill 2
 
 ### Prerequisites
 * Python 3.x
