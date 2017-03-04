@@ -3,6 +3,162 @@ import sys
 import struct
 import zlib
 
+metalist = [
+    # SLPM-12345 - E3 Demo (v0.30)
+    # Executable timestamp: 2001-05-01 10:13:56 GMT+0900
+    {
+        "exepath"        : "SLPM_123.45",
+        "execrc"         : 0x8556FA90,
+        "toc_offset"     : 0x45C200,
+        "toc_count"      : 539,
+
+        "datpath"        : "SOUND.DAT",
+        "irxpath"        : "IOP/SD0425/SOUNDCD.IRX",
+        "irxcrc"         : 0x76CC7D44,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x13AC0,
+        "seq_ent_count"  : 26,
+        "stm_start_sect" : 2626,
+        "stm_tbl_offset" : 0x13340,
+        "stm_ent_count"  : 159,
+    },
+
+    # SLPM-61009 - Trial Version (v1.20)
+    # Executable timestamp: 2001-08-11 11:18:02 GMT+0900
+    {
+        "exepath"        : "SLPM_610.09",
+        "execrc"         : 0x37E6204D,
+        "toc_offset"     : 0x2B3180,
+        "toc_count"      : 3441,
+
+        "datpath"        : "IOP/SOUND/SOUND.DAT",
+        "irxpath"        : "IOP/SOUND/SOUNDCD.IRX",
+        "irxcrc"         : 0xB05B19AA,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x13CE0,
+        "seq_ent_count"  : 80,
+        "stm_start_sect" : 13290,
+        "stm_tbl_offset" : 0x137C0,
+        "stm_ent_count"  : 109,
+    },
+
+    # SLPM-65051 (v1.50)
+    # Executable timestamp: 2001-08-22 02:50:16 GMT+0900
+    {
+        "exepath"        : "SLPM_650.51",
+        "execrc"         : 0x2FB23919,
+        "toc_offset"     : 0x2BB900,
+        "toc_count"      : 3443,
+
+        "datpath"        : "IOP/SOUND/SOUND.DAT",
+        "irxpath"        : "IOP/SOUND/SOUNDCD.IRX",
+        "irxcrc"         : 0xB05B19AA,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x13CE0,
+        "seq_ent_count"  : 80,
+        "stm_start_sect" : 13290,
+        "stm_tbl_offset" : 0x137C0,
+        "stm_ent_count"  : 109,
+    },
+
+    # SLPM-65098 - Saigo no Uta (v1.50)
+    # +
+    # SLPM-65631 - Saigo no Uta - Konami Dendou Selection (v1.50)
+    # Executable timestamp: 2002-02-26 06:11:56 GMT+0900
+    {
+        "exepath"        : "SLPM_650.98",
+        "execrc"         : 0x1388A129,
+        "toc_offset"     : 0x2CCB80,
+        "toc_count"      : 3894,
+
+        "datpath"        : "IOP/SOUND/SOUND.DAT",
+        "irxpath"        : "IOP/SOUND/SOUNDCD.IRX",
+        "irxcrc"         : 0xA2A69417,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x13D80,
+        "seq_ent_count"  : 82,
+        "stm_start_sect" : 13809,
+        "stm_tbl_offset" : 0x137C0,
+        "stm_ent_count"  : 122,
+    },
+
+    # SLUS-20228 (v1.20)
+    # Executable timestamp: 2001-08-14 15:13:52 GMT+0900
+    {
+        "exepath"        : "SLUS_202.28",
+        "execrc"         : 0xAA6B485D,
+        "toc_offset"     : 0x2BB180,
+        "toc_count"      : 3443,
+
+        "datpath"        : "IOP/SOUND/SOUND.DAT",
+        "irxpath"        : "IOP/SOUND/SOUNDCD.IRX",
+        "irxcrc"         : 0xB05B19AA,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x13CE0,
+        "seq_ent_count"  : 80,
+        "stm_start_sect" : 13290,
+        "stm_tbl_offset" : 0x137C0,
+        "stm_ent_count"  : 109,
+    },
+
+    # SLUS-20228GH - Greatest Hits (v2.01)
+    # Executable timestamp: 2002-07-11 05:18:18 GMT+0900
+    {
+        "exepath"        : "SLUS_202.28",
+        "execrc"         : 0xB6DA54E6,
+        "toc_offset"     : 0x2CCF00,
+        "toc_count"      : 3894,
+
+        "datpath"        : "IOP/SOUND/SOUND.DAT",
+        "irxpath"        : "IOP/SOUND/SOUNDCD.IRX",
+        "irxcrc"         : 0xA2A69417,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x13D80,
+        "seq_ent_count"  : 82,
+        "stm_start_sect" : 13809,
+        "stm_tbl_offset" : 0x137C0,
+        "stm_ent_count"  : 122,
+    },
+
+    # SLES-50382 - Special Edition / The Collection (v1.10)
+    # Executable timestamp: 2001-10-01 08:46:52 GMT+0900
+    {
+        "exepath"        : "SLES_503.82",
+        "execrc"         : 0xD3402685,
+        "toc_offset"     : 0x2BD400,
+        "toc_count"      : 3724,
+
+        "datpath"        : "IOP/SOUND/SOUND.DAT",
+        "irxpath"        : "IOP/SOUND/SOUNDCD.IRX",
+        "irxcrc"         : 0x55D0DCE5,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x14120,
+        "seq_ent_count"  : 80,
+        "stm_start_sect" : 13290,
+        "stm_tbl_offset" : 0x13B08,
+        "stm_ent_count"  : 129,
+    },
+
+    # SLES-51156 - Director's Cut (v1.02)
+    # Executable timestamp: 2002-11-07 10:15:08 GMT+0900
+    {
+        "exepath"        : "SLES_511.56",
+        "execrc"         : 0xE6CFE16F,
+        "toc_offset"     : 0x2CD980,
+        "toc_count"      : 3894,
+
+        "datpath"        : "IOP/SOUND/SOUND.DAT",
+        "irxpath"        : "IOP/SOUND/SOUNDCD.IRX",
+        "irxcrc"         : 0xA2A69417,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x13D80,
+        "seq_ent_count"  : 82,
+        "stm_start_sect" : 13809,
+        "stm_tbl_offset" : 0x137C0,
+        "stm_ent_count"  : 122,
+    }
+]
+
 class ISOFS_IMAGE:
     #
     # DISCLAIMER:
@@ -251,184 +407,221 @@ class ISOFS_IMAGE:
 def crc32(data):
     return zlib.crc32(data) & 0xFFFFFFFF
 
-def get_u8(buf, offset):
-    return struct.unpack("B", buf[offset:offset+1])[0]
+def get_u8(buf, off=0):
+    return struct.unpack("B", buf[off:off+1])[0]
 
-def get_u32_le(buf, offset):
-    return struct.unpack("<I", buf[offset:offset+4])[0]
+def get_u32_le(buf, off=0):
+    return struct.unpack("<I", buf[off:off+4])[0]
 
-def get_filename(buf, offset):
-    end = offset
+def get_c_string(buf, off):
+    end = off
+
     while buf[end] != 0:
         end += 1
-    return buf[offset:end].decode("ASCII")
 
-exe_meta = [
-    # SLPM-65051 (v1.50)
-    # Executable timestamp: 2001-08-22 02:50:16 GMT+0900
-    {
-        "path"           : "SLPM_650.51",
-        "crc"            : 0x2FB23919,
-        "elf_header_size": 0x700,
-        "imagebase"      : 0x100000,
-        "toc_offset"     : 0x2BB900,
-        "toc_count"      : 3443
-    },
+    return buf[off:end].decode("ASCII")
 
-    # SLPM-65098 - Saigo no Uta (v1.50)
-    # +
-    # SLPM-65631 - Saigo no Uta - Konami Dendou Selection (v1.50)
-    # Executable timestamp: 2002-02-26 06:11:56 GMT+0900
-    {
-        "path"           : "SLPM_650.98",
-        "crc"            : 0x1388A129,
-        "elf_header_size": 0x800,
-        "imagebase"      : 0x100000,
-        "toc_offset"     : 0x2CCB80,
-        "toc_count"      : 3894
-    },
+def vfs_ex(disk, meta, exebuf):
 
-    # SLPM-61009 - Trial Version (v1.20)
-    # Executable timestamp: 2001-08-11 11:18:02 GMT+0900
-    {
-        "path"           : "SLPM_610.09",
-        "crc"            : 0x37E6204D,
-        "elf_header_size": 0x700,
-        "imagebase"      : 0x100000,
-        "toc_offset"     : 0x2B3180,
-        "toc_count"      : 3441
-    },
+    e_phoff  = get_u32_le(exebuf, 0x1C)
+    p_offset = get_u32_le(exebuf, e_phoff+0x04)
+    p_vaddr  = get_u32_le(exebuf, e_phoff+0x08)
 
-    # SLPM-12345 - E3 Demo (v0.30)
-    # Executable timestamp: 2001-05-01 10:13:56 GMT+0900
-    {
-        "path"           : "SLPM_123.45",
-        "crc"            : 0x8556FA90,
-        "elf_header_size": 0x80,
-        "imagebase"      : 0x100000,
-        "toc_offset"     : 0x45C200,
-        "toc_count"      : 539
-    },
+    toc_offset = meta["toc_offset"]
+    toc_count = meta["toc_count"]
 
-    # SLUS-20228 (v1.20)
-    # Executable timestamp: 2001-08-14 15:13:52 GMT+0900
-    {
-        "path"           : "SLUS_202.28",
-        "crc"            : 0xAA6B485D,
-        "elf_header_size": 0x700,
-        "imagebase"      : 0x100000,
-        "toc_offset"     : 0x2BB180,
-        "toc_count"      : 3443
-    },
-
-    # SLUS-20228GH - Greatest Hits (v2.01)
-    # Executable timestamp: 2002-07-11 05:18:18 GMT+0900
-    {
-        "path"           : "SLUS_202.28",
-        "crc"            : 0xB6DA54E6,
-        "elf_header_size": 0x800,
-        "imagebase"      : 0x100000,
-        "toc_offset"     : 0x2CCF00,
-        "toc_count"      : 3894
-    },
-
-    # SLES-50382 - Special Edition / The Collection (v1.10)
-    # Executable timestamp: 2001-10-01 08:46:52 GMT+0900
-    {
-        "path"           : "SLES_503.82",
-        "crc"            : 0xD3402685,
-        "elf_header_size": 0x800,
-        "imagebase"      : 0x100000,
-        "toc_offset"     : 0x2BD400,
-        "toc_count"      : 3724
-    },
-
-    # SLES-51156 - Director's Cut (v1.02)
-    # Executable timestamp: 2002-11-07 10:15:08 GMT+0900
-    {
-        "path"           : "SLES_511.56",
-        "crc"            : 0xE6CFE16F,
-        "elf_header_size": 0x800,
-        "imagebase"      : 0x100000,
-        "toc_offset"     : 0x2CD980,
-        "toc_count"      : 3894
-    }
-]
-
-def sh2ex(disk, exe, exebuf):
-    elf_header_size = exe["elf_header_size"]
-    imagebase = exe["imagebase"]
-    toc_offset = exe["toc_offset"]
-    toc_count = exe["toc_count"]
-
-    out_root = "%s - extracted" % os.path.splitext(disk.path)[0]
+    out_root = "%s - vfs" % os.path.splitext(disk.path)[0]
 
     for i in range(toc_count):
-        meta_offset = (get_u32_le(exebuf, toc_offset + (i * 8) + 0x00) - imagebase) + elf_header_size
-        path_offset = (get_u32_le(exebuf, toc_offset + (i * 8) + 0x04) - imagebase) + elf_header_size
 
-        type = get_u32_le(exebuf, meta_offset + 0x00)
+        meta_address = get_u32_le(exebuf, toc_offset+0x00)
+        meta_offset = p_offset + meta_address - p_vaddr
 
-        if type != 0x50:
-            continue
-        
-        size = get_u32_le(exebuf, meta_offset + 0x0C)
-        
-        offset_in_file = 0
-        
-        while True:
-            type = get_u32_le(exebuf, meta_offset + 0x00)
+        type = get_u32_le(exebuf, meta_offset+0x00)
 
-            if type != 0x50:
-                break
+        if type == 0x50:
 
-            offset_in_file += get_u32_le(exebuf, meta_offset + 0x08)
+            vfs_offset    = 0
+            vfs_size      = get_u32_le(exebuf, meta_offset+0x0C)
+            vfs_path_addr = get_u32_le(exebuf, toc_offset+0x04)
+            vfs_path_off  = p_offset + vfs_path_addr - p_vaddr
 
-            meta_offset = (get_u32_le(exebuf, meta_offset + 0x04) - imagebase) + elf_header_size
-        
-        parent_path_offset = (get_u32_le(exebuf, meta_offset + 0x04) - imagebase) + elf_header_size
-        parent_path = get_filename(exebuf, parent_path_offset).upper()
+            while type == 0x50:
 
-        if parent_path in disk.toc:
-            sub_path = get_filename(exebuf, path_offset)
-            sub_dirpath = os.path.dirname(sub_path)
+                vfs_offset += get_u32_le(exebuf, meta_offset+0x08)
 
-            out_path = os.path.join(out_root, sub_path)
-            out_dirpath = os.path.join(out_root, sub_dirpath)
+                meta_address = get_u32_le(exebuf, meta_offset+0x04)
+                meta_offset = p_offset + meta_address - p_vaddr
 
-            if not os.path.isdir(out_dirpath):
-                os.makedirs(out_dirpath)
+                type = get_u32_le(exebuf, meta_offset+0x00)
 
-            disk.seek_user(disk.toc[parent_path]["lba"], offset_in_file)
+            disc_path_addr = get_u32_le(exebuf, meta_offset+0x04)
+            disc_path_off  = p_offset + disc_path_addr - p_vaddr
+            disc_path      = get_c_string(exebuf, disc_path_off).upper()
 
-            disk.extract(out_path, size)
+            if disc_path in disk.toc:
 
-            print("Extracted: %s" % sub_path)
+                vfs_path = get_c_string(exebuf, vfs_path_off)
+                vfs_dirpath = os.path.dirname(vfs_path)
+
+                out_path = os.path.join(out_root, vfs_path)
+                out_dirpath = os.path.dirname(out_path)
+
+                if not os.path.isdir(out_dirpath):
+                    os.makedirs(out_dirpath)
+
+                disk.seek_user(disk.toc[disc_path]["lba"], vfs_offset)
+
+                print("Extracting: %s ..." % vfs_path)
+
+                disk.extract(out_path, vfs_size)
+
+        toc_offset += 8
+
+def sound_ex(disk, meta, irxbuf):
+
+    datpath        = meta["datpath"]
+    seq_start_sect = meta["seq_start_sect"]
+    seq_tbl_offset = meta["seq_tbl_offset"]
+    seq_ent_count  = meta["seq_ent_count"]
+    stm_start_sect = meta["stm_start_sect"]
+    stm_tbl_offset = meta["stm_tbl_offset"]
+    stm_ent_count  = meta["stm_ent_count"]
+
+    dat_sect = disk.toc[datpath]["lba"]
+
+    out_root = "%s - sound" % os.path.splitext(disk.path)[0]
+
+    # ------------------------------------------------------
+
+    out_dir = os.path.join(out_root, "TriggerData")
+
+    if not os.path.isdir(out_dir):
+        os.makedirs(out_dir)
+
+    table_offset = seq_tbl_offset
+
+    dat_offset = seq_start_sect * 2048
+
+    core_sfx_cnt = 0
+    misc_sfx_cnt = 0
+
+    for i in range(seq_ent_count):
+        id         = get_u32_le(irxbuf, table_offset+0x00)
+        #bank_sect = get_u32_le(irxbuf, table_offset+0x04)
+        bank_size  = get_u32_le(irxbuf, table_offset+0x08)
+        #td_sect   = get_u32_le(irxbuf, table_offset+0x0C)
+        td_size    = get_u32_le(irxbuf, table_offset+0x10)
+
+        if id >= 50000 and id < 60000:
+            basename = "TD %02d - BGM %d" % (i, id)
+        elif id == 0:
+            basename = "TD %02d - Core SFX %02d" % (i, core_sfx_cnt)
+            core_sfx_cnt += 1
+        elif id == 1:
+            basename = "TD %02d - Misc SFX %02d" % (i, misc_sfx_cnt)
+            misc_sfx_cnt += 1
+
+        hd_name = "%s.HD" % basename
+        bd_name = "%s.BD" % basename
+        td_name = "%s.TD" % basename
+
+        hd_path = os.path.join(out_dir, hd_name)
+        bd_path = os.path.join(out_dir, bd_name)
+        td_path = os.path.join(out_dir, td_name)
+
+        disk.seek_user(dat_sect, dat_offset)
+        header = disk.read_user(0x24)
+        hd_size = get_u32_le(header, 0x1C)
+        bd_size = get_u32_le(header, 0x20)
+
+        # ----------------------------------
+
+        disk.seek_user(dat_sect, dat_offset)
+
+        print("Extracting: %s ..." % hd_name)
+        disk.extract(hd_path, hd_size)
+
+        print("Extracting: %s ..." % bd_name)
+        disk.extract(bd_path, bd_size)
+
+        dat_offset += ((bank_size - 1) & ~2047) + 2048
+
+        # ----------------------------------
+
+        disk.seek_user(dat_sect, dat_offset)
+
+        print("Extracting: %s ..." % td_name)
+        disk.extract(td_path, td_size)
+
+        dat_offset += ((td_size - 1) & ~2047) + 2048
+
+        table_offset += 20
+
+    # ------------------------------------------------------
+
+    out_dir = os.path.join(out_root, "Streams")
+
+    if not os.path.isdir(out_dir):
+        os.makedirs(out_dir)
+
+    table_offset = stm_tbl_offset
+
+    dat_offset = stm_start_sect * 2048
+
+    for i in range(stm_ent_count):
+        #stm_sect = get_u32_le(irxbuf, table_offset+0x00)
+        stm_size  = get_u32_le(irxbuf, table_offset+0x04)
+        #stm_vol  = get_u32_le(irxbuf, table_offset+0x08)
+
+        stm_name = "Stream %03d.svag" % i
+        stm_path = os.path.join(out_dir, stm_name)
+
+        disk.seek_user(dat_sect, dat_offset)
+
+        print("Extracting: %s ..." % stm_name)
+        disk.extract(stm_path, stm_size)
+
+        dat_offset += ((stm_size - 1) & ~2047) + 2048
+
+        table_offset += 12
 
 def main(argc=len(sys.argv), argv=sys.argv):
+
     if argc != 2:
-        print("Usage: %s <diskimage>" % argv[0])
+        print("Usage: %s <disk>" % argv[0])
         return 1
 
     path_in = os.path.realpath(argv[1])
 
-    if not os.path.isfile(path_in):
-        print("Invalid filepath")
-        return 1
-
     disk = ISOFS_IMAGE(path_in)
 
-    for exe in exe_meta:
-        path = exe["path"]
-        if path in disk.toc:
-            disk.seek_user(disk.toc[path]["lba"])
-            exebuf = disk.read_user(disk.toc[path]["size"])
-            if crc32(exebuf) == exe["crc"]:
-                sh2ex(disk, exe, exebuf)
-                input("All done.")
-                return 0
+    for meta in metalist:
 
-    input("Unsupported version")
+        exepath = meta["exepath"]
+        if exepath in disk.toc:
+
+            irxpath = meta["irxpath"]
+            if irxpath in disk.toc:
+
+                disk.seek_user(disk.toc[exepath]["lba"])
+                exebuf = disk.read_user(disk.toc[exepath]["size"])
+                if crc32(exebuf) == meta["execrc"]:
+
+                    disk.seek_user(disk.toc[irxpath]["lba"])
+                    irxbuf = disk.read_user(disk.toc[irxpath]["size"])
+                    if crc32(irxbuf) == meta["irxcrc"]:
+
+                        vfs_ex(disk, meta, exebuf)
+
+                        sound_ex(disk, meta, irxbuf)
+
+                        input("All done.")
+
+                        return 0
+
+    input("Unsupported version.")
+
     return 1
 
 if __name__ == "__main__":
