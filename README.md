@@ -11,13 +11,12 @@ Extracts internal filesystem and sound data of Silent Hill 2
 **&#42;** Drag-and-drop must be supported by your environment, and Python must be set to handle .py files.
 
 ### Currently supported versions:
-* SLPM-65051 (v1.50)
-* SLPM-65631 - Saigo no Uta - Konami Dendou Selection (v1.50)
-* SLPM-61009 - Trial Version (v1.20)
 * SLPM-12345 - E3 Demo (v0.30)
+* SLPM-61009 - Trial Version (v1.20)
+* SLPM-65051 (v1.50)
+* SLPM-65098 - Saigo no Uta
+* SLPM-65631 - Saigo no Uta - Konami Dendou Selection (v1.50)
 * SLUS-20228 (v1.20)
 * SLUS-20228GH - Greatest Hits (v2.01)
 * SLES-50382 - Special Edition / The Collection (v1.10)
 * SLES-51156 - Director's Cut (v1.02)
-
-*SLPM-65098* might be unintentionally supported as well (i.e. not tested since I don't have it), as the executable name and even disc mastering code on *SLPM-65631* matches with it. If you have tested that exact release, please report the results.
