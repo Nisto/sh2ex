@@ -82,6 +82,25 @@ metalist = [
         "stm_ent_count"  : 122,
     },
 
+    # SLKA-25001 (v1.01)
+    # Executable timestamp: 2002-12-09 08:22:06 GMT+0900
+    {
+        "exepath"        : "SLKA_250.01",
+        "execrc"         : 0x0DE91246,
+        "toc_offset"     : 0x2CD080,
+        "toc_count"      : 3894,
+
+        "datpath"        : "IOP/SOUND/SOUND.DAT",
+        "irxpath"        : "IOP/SOUND/SOUNDCD.IRX",
+        "irxcrc"         : 0xA2A69417,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x13D80,
+        "seq_ent_count"  : 82,
+        "stm_start_sect" : 13809,
+        "stm_tbl_offset" : 0x137C0,
+        "stm_ent_count"  : 122,
+    },
+
     # SLUS-20228 (v1.20)
     # Executable timestamp: 2001-08-14 15:13:52 GMT+0900
     {
@@ -472,7 +491,7 @@ def vfs_ex(disk, meta, exebuf):
 
                 disk.seek_user(disk.toc[disc_path]["lba"], vfs_offset)
 
-                print("Extracting: %s ..." % vfs_path)
+                print("Extracting: %s --> %s ..." % (disc_path, vfs_path))
 
                 disk.extract(out_path, vfs_size)
 
