@@ -16,6 +16,7 @@ Extracts internal filesystem and sound data of Silent Hill 2
 * SLPM-65051 (v1.50)
 * SLPM-65098 - Saigo no Uta
 * SLPM-65631 - Saigo no Uta - Konami Dendou Selection (v1.50)
+* SLKA-25001 (v1.01)
 * SLUS-20228 (v1.20)
 * SLUS-20228GH - Greatest Hits (v2.01)
 * SLES-50382 - Special Edition / The Collection (v1.10)
