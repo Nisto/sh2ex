@@ -4,6 +4,25 @@ import struct
 import zlib
 
 metalist = [
+    # SLUS-20228 (VW047-U1 prototype) (v0.10)
+    # Executable timestamp: 2001-07-13 12:55:24 GMT+0900
+    {
+        "exepath"        : "SLUS_202.28",
+        "execrc"         : 0xFCD793AC,
+        "toc_offset"     : 0x29CD00,
+        "toc_count"      : 3414,
+
+        "datpath"        : "IOP/SD0712/SOUND.DAT",
+        "irxpath"        : "IOP/SD0712/SOUNDCD.IRX",
+        "irxcrc"         : 0xB2A544EC,
+        "seq_start_sect" : 0,
+        "seq_tbl_offset" : 0x14750,
+        "seq_ent_count"  : 79,
+        "stm_start_sect" : 12505,
+        "stm_tbl_offset" : 0x13B80,
+        "stm_ent_count"  : 252,
+    },
+
     # SLPM-12345 - E3 Demo (v0.30)
     # Executable timestamp: 2001-05-01 10:13:56 GMT+0900
     {
