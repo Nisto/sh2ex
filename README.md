@@ -11,6 +11,7 @@ Extracts internal filesystem and sound data of Silent Hill 2
 **&#42;** Drag-and-drop must be supported by your environment, and Python must be set to handle .py files.
 
 ### Currently supported versions:
+* SLUS-20228 (VW047-U1 prototype) (v0.10)
 * SLPM-12345 - E3 Demo (v0.30)
 * SLPM-61009 - Trial Version (v1.20)
 * SLPM-65051 (v1.50)
